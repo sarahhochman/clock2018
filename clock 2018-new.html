@@ -1,0 +1,225 @@
+<html>
+	<head>
+		<title>What time is it? </title>
+		<style>
+			body {background-color:pink;}
+		</style>
+	</head>
+	
+	<body>
+		<center>
+			<h1>What time is it?</h1>
+		</center>
+		<canvas id="canvas" width="700" height="600"></canvas>
+		<script>
+			var canvas=document.getElementById("canvas");
+			var ctx= canvas.getContext("2d");
+			//Circle Function
+				var circle=function(x,y,radius)
+				{
+					ctx.lineWidth=4;
+					ctx.beginPath();
+					ctx.arc(x,y,radius,0,Math.PI*2,false);
+					ctx.stroke();
+				};
+			//outside of clock
+			circle(200,200,200);
+			//numbers in clock
+			ctx.font = "30px Arial";
+			ctx.strokeText("12",190,50);
+			ctx.strokeText("1",270,70);
+			ctx.strokeText("2",320,130);
+			ctx.strokeText("3",350,210);
+			ctx.strokeText("4",320,280);
+			ctx.strokeText("5",270,350);
+			ctx.strokeText("6",190,380);
+			ctx.strokeText("7",110,350);
+			ctx.strokeText("8",60,280)
+			ctx.strokeText("9",20,210);
+			ctx.strokeText("10",60,130);
+			ctx.strokeText("11",110,70);
+			//center of clock
+			circle(200,200,10);
+			//hour and minute hand function
+				var arrow=function(x,y)
+				{
+					ctx.lineWidth=4;
+					ctx.beginPath();
+					ctx.moveTo(200,200);
+					ctx.lineTo(x,y);
+					ctx.stroke();
+				};
+			//input hour
+				var today= new Date();
+				var hour=today.getHours();
+				if (hour==13)
+					hour=1;
+				if (hour==14)
+					hour=2;
+				if (hour==15)
+					hour=3;
+				if (hour==16)
+					hour=4;
+				if (hour==17)
+					hour=5;
+				if (hour==18)
+					hour=6;
+				if (hour==19)
+					hour=7;
+				if (hour==20)
+					hour=8;
+				if (hour==21)
+					hour=9;
+				if (hour==22)
+					hour=10;
+				if (hour==23)
+					hour=11;
+				if (hour==24)
+					hour=12;
+				
+				
+			switch (hour)
+				{
+				case 12:
+					//12 oclock
+					arrow(200,100);
+					break;
+				case 1:
+					//1 oclock	
+					arrow(240,120);
+					break;
+				case 2:
+					//2 oclock	
+					arrow(280,160);
+					break;
+				case 3:
+					//3 oclock
+					arrow(300,200);
+					break;
+				case 4:
+					//4 oclock	
+					arrow(280,240);
+					break;
+				case 5:
+					//5 oclock
+					arrow(240,280);
+					break;
+				case 6:
+					//6 oclock
+					arrow(200,280);
+					break;
+				case 7:
+					//7 oclock
+					arrow(150,260);
+					break;
+				case 8:
+					//8 oclock
+					arrow(120,240);
+					break;
+				case 9:
+					//9 oclock
+					arrow(100,200);
+					break;
+				case 10:
+					//10 oclock
+					arrow(80,170);
+					break;
+				case 11:
+					//11 oclock
+					arrow(130,100);
+					break;
+				default:
+					ctx.strokeText("no time given",100,100);
+				};
+			
+			var minutes=today.getMinutes();
+			if (minutes<05&&minutes>00)
+				minutes=0;
+			if (minutes<10&&minutes>05)
+				minutes=5;
+			if (minutes<15&&minutes>10)
+				minutes=10;
+			if (minutes<20&&minutes>15)
+				minutes=15;
+			if (minutes<25&&minutes>20)
+				minutes=20;
+			if (minutes<30&&minutes>25)
+				minutes=25;
+			if (minutes<35&&minutes>30)
+				minutes=30;
+			if (minutes<40&&minutes>35)
+				minutes=35;
+			if (minutes<45&&minutes>40)
+				minutes=40;
+			if (minutes<50&&minutes>45)
+				minutes=45;
+			if (minutes<55&&minutes>50)
+				minutes=50;
+			if (minutes<60&&minutes>55)
+				minutes=55;
+			if (minutes==60)
+				minutes=60;
+			switch (minutes)
+				{
+				case 0:
+					//0min
+					arrow(200,50);
+					break;
+				case 5:
+					//5min
+					arrow(280,70);
+					break;
+				case 10:
+					//10min
+					arrow(330,120);
+					break;
+				case 15:
+					//15min
+					arrow(350,200);
+					break;
+				case 20:
+					//20min
+					arrow(350,210);
+					break;
+				case 25:
+					//25min
+					arrow(300,350);
+					break;
+				case 30:
+					//30min
+					arrow(200,380);
+					break;
+				case 35:
+					//35min
+					arrow(140,350);
+					break;
+				case 40:
+					//40min
+					arrow(70,280);
+					break;
+				case 45:
+					//45min
+					arrow(30,200);
+					break;
+				case 50:
+					//50min
+					arrow(70,130);
+					break;
+				case 55:
+					//55min
+					arrow(120,70);
+					break;
+				default:
+					ctx.strokeText("no time given",100,100);
+				};
+			//digital clock
+			if (minutes<10)
+				{
+					minutes="0"+minutes;
+				};
+			ctx.strokeRect(450,200,200,100);
+			ctx.font = "60px Arial";
+			ctx.strokeText(hour+" : "+minutes,460,275);
+		</script>
+	</body>
+</html>
